@@ -34,7 +34,7 @@ public class BlockBreakListener implements Listener {
         final Block  block  = event.getBlock();
 
         if(block.getType() == Material.STONE) {
-            //final IUser user = userManager.get(player.getUniqueId());
+            final IUser user = userManager.get(player.getUniqueId());
 
             for (IDropItem dropItem : dropManager.getDropItemList()) {
 
@@ -44,7 +44,14 @@ public class BlockBreakListener implements Listener {
 
                 ItemStack itemStack = new ItemStack(dropItem.getMaterial(), 1);
 
+                user.setExp(user.getExp() + dropItem.getExp());
                 player.getInventory().addItem(itemStack);
+            }
+
+            if(user.getExp() >= user.getNeed()) {
+                user.setLevel(user.getLevel() + 1);
+                user.setExp(user.getExp() - user.getNeed());
+                user.setNeed(user.getNeed() + 100); //TODO
             }
 
         }

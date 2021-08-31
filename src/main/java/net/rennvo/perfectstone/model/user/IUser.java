@@ -8,4 +8,16 @@ public interface IUser {
 
     public String getName();
 
+    public int getLevel();
+
+    public void setLevel(int level);
+
+    public int getExp();
+
+    public void setExp(int exp);
+
+    public int getNeed();
+
+    public void setNeed(int need);
+
 }

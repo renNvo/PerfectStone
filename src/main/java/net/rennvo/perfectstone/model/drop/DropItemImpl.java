@@ -8,12 +8,14 @@ import org.bukkit.Material;
 
 public class DropItemImpl implements IDropItem {
 
-    private Material material;
-    private double   chance;
+    private final Material material;
+    private final double   chance;
+    private final int      exp;
 
-    public DropItemImpl(Material material, double chance) {
+    public DropItemImpl(Material material, double chance, int exp) {
         this.material = material;
         this.chance = chance;
+        this.exp = exp;
     }
 
     @Override
@@ -24,5 +26,10 @@ public class DropItemImpl implements IDropItem {
     @Override
     public double getChance() {
         return chance;
+    }
+
+    @Override
+    public int getExp() {
+        return exp;
     }
 }

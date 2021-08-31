@@ -1,5 +1,6 @@
 package net.rennvo.perfectstone;
 
+import net.rennvo.perfectstone.listener.AsyncPlayerChatListener;
 import net.rennvo.perfectstone.listener.BlockBreakListener;
 import net.rennvo.perfectstone.service.DropManager;
 import net.rennvo.perfectstone.service.UserManager;
@@ -21,6 +22,7 @@ public class PerfectStonePlugin extends JavaPlugin {
         this.dropManager = new DropManager();
 
         Bukkit.getPluginManager().registerEvents(new BlockBreakListener(userManager, dropManager), this);
+        Bukkit.getPluginManager().registerEvents(new AsyncPlayerChatListener(userManager), this);
     }
 
     @Override
