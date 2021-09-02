@@ -1,5 +1,6 @@
 package net.rennvo.perfectstone.listener;
 
+import net.rennvo.perfectstone.configuration.Configuration;
 import net.rennvo.perfectstone.model.user.IUser;
 import net.rennvo.perfectstone.model.user.UserImpl;
 import net.rennvo.perfectstone.service.UserManager;
@@ -16,8 +17,12 @@ public class PlayerJoinListener implements Listener {
 
     private final UserManager userManager;
 
-    public PlayerJoinListener(UserManager userManager) {
+    private final int startNeed;
+
+    public PlayerJoinListener(Configuration configuration, UserManager userManager) {
         this.userManager = userManager;
+
+        this.startNeed = configuration.needConfiguration.getNeed(1);
     }
 
     @EventHandler
@@ -26,8 +31,8 @@ public class PlayerJoinListener implements Listener {
 
         IUser user = userManager.get(player.getUniqueId());
 
-        if(user == null) {
-            user = new UserImpl(player.getUniqueId(), player.getName());
+        if (user == null) {
+            user = new UserImpl(player.getUniqueId(), player.getName(), startNeed);
             userManager.put(user);
         }
     }

@@ -1,5 +1,8 @@
 package net.rennvo.perfectstone.model.user;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
+import net.rennvo.perfectstone.configuration.Configuration;
+
 import java.util.UUID;
 
 /**
@@ -15,13 +18,21 @@ public class UserImpl implements IUser {
     private int exp;
     private int need;
 
-    public UserImpl(UUID uniqueId, String name) {
+    public UserImpl(UUID uniqueId, String name, int need) {
         this.uniqueId = uniqueId;
         this.name = name;
 
         this.level = 1;
         this.exp = 0;
-        this.need = 100; //TODO
+        this.need = need;
+    }
+
+    public UserImpl(UUID uniqueId, String name, int level, int exp, int need) {
+        this.uniqueId = uniqueId;
+        this.name = name;
+        this.level = level;
+        this.exp = exp;
+        this.need = need;
     }
 
     @Override
